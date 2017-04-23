@@ -4,6 +4,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pig.presenter.PresenterImpl;
+import pig.view.View;
+import pig.view.ViewImpl;
 
 import java.awt.*;
 import java.io.IOException;
@@ -14,7 +17,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
+        View view = new ViewImpl();
+        fxmlLoader.setController(view);
+        root = fxmlLoader.load();
+//        root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();

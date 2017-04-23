@@ -9,27 +9,32 @@ import pig.view.View;
  */
 public class PresenterImpl implements Presenter.View, Presenter.Model {
 
+    private final View view;
+    private final Model model;
+
     public PresenterImpl(View view) {
-        Model model = new ModelImpl(this);
+        this.view = view;
+        model = new ModelImpl(this);
     }
 
     @Override
     public void playerRolls() {
-
+        int roll = model.roll();
+        view.displayRollResult(roll);
     }
 
     @Override
     public void playerHolds() {
-
+        model.hold();
     }
 
     @Override
     public void newTurnFor(String player) {
-
+        view.displayPlayersTurn(player);
     }
 
     @Override
     public void changedStakeTo(int stake) {
-
+        view.displayChangedStake(stake);
     }
 }
