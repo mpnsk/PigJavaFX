@@ -1,4 +1,4 @@
-package pig;
+package pig.presenter;
 
 public interface Presenter {
     public interface View {

@@ -1,4 +1,4 @@
-package pig;
+package pig.model;
 
 public interface Model {
     int roll();

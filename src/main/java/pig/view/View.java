@@ -1,4 +1,4 @@
-package pig;
+package pig.view;
 
 public interface View {
     void displayPlayersTurn(String player);

@@ -1,4 +1,8 @@
-package pig;
+package pig.presenter;
+
+import pig.model.Model;
+import pig.model.ModelImpl;
+import pig.view.View;
 
 /**
  * Created by mpnsk on 4/17/2017.
