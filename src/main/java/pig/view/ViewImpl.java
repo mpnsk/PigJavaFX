@@ -11,11 +11,7 @@ import pig.presenter.PresenterImpl;
 
 public class ViewImpl implements View {
     @FXML
-    private Button rollBtn;
-    @FXML
-     Button holdBtn;
-    @FXML
-    private Label stakeLabel, whoseTurn, rollLabel;
+    private Label labelStake, labelWhoseTurn, labelRoll, labelPlayer1, labelPlayer2, labelPlayer1Score, labelPlayer2Score;
     private final Presenter.View presenter;
 
     public ViewImpl() {
@@ -38,16 +34,16 @@ public class ViewImpl implements View {
 
     @Override
     public void displayPlayersTurn(String player) {
-        whoseTurn.setText("It's " + player + "'s turn!");
+        labelWhoseTurn.setText("It's " + player + "'s turn!");
     }
 
     @Override
     public void displayRollResult(int rolled) {
-        rollLabel.setText(Integer.toString(rolled));
+        labelRoll.setText(Integer.toString(rolled));
     }
 
     @Override
     public void displayChangedStake(int newStake) {
-        stakeLabel.setText(Integer.toString(newStake));
+        labelStake.setText(Integer.toString(newStake));
     }
 }

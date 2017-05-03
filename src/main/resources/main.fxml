@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pig.view.ViewImpl">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -19,22 +19,22 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="rollBtn" mnemonicParsing="false" onAction="#roll" text="roll" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-      <Button fx:id="holdBtn" mnemonicParsing="false" onAction="#hold" text="hold" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-      <Label fx:id="stakeLabel" text="not set yet" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Label fx:id="rollLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <FlowPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Label text="Label" />
-            <Label text="Label" />
-         </children>
-      </FlowPane>
-      <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
-         <children>
-            <Label text="Label" />
-            <Label text="Label" />
-         </children>
-      </FlowPane>
-      <Label fx:id="whoseTurn" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+       <FlowPane prefHeight="200.0" prefWidth="200.0">
+           <children>
+               <Label fx:id="labelPlayer1" text="PlayerX" />
+               <Label fx:id="labelPlayer1Score" text="ScoreX" />
+           </children>
+       </FlowPane>
+       <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+           <children>
+               <Label fx:id="labelPlayer2" text="PlayerY" />
+               <Label fx:id="labelPlayer2Score" text="ScoreY" />
+           </children>
+       </FlowPane>
+      <Label fx:id="labelRoll" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label fx:id="labelStake" text="not set yet" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Button  mnemonicParsing="false" onAction="#roll" text="roll" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Label fx:id="labelWhoseTurn" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      <Button  mnemonicParsing="false" onAction="#hold" text="hold" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
    </children>
 </GridPane>

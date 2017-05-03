@@ -38,7 +38,7 @@ public class MainTest extends ApplicationTest {
 
     @Test
     public void displayPlayersTurnTest() {
-        String label = "#whoseTurn";
+        String label = "#labelWhoseTurn";
         verifyThat(label, hasText("Label"));
         String player = "Player 1";
         interact(() -> controller.displayPlayersTurn(player));
@@ -47,7 +47,7 @@ public class MainTest extends ApplicationTest {
 
     @Test
     public void displayRollResultTest() {
-        String label = "#rollLabel";
+        String label = "#labelRoll";
         int rolled = 3;
         verifyThat(label, hasText("0"));
         interact(() -> controller.displayRollResult(rolled));
@@ -56,7 +56,7 @@ public class MainTest extends ApplicationTest {
 
     @Test
     public void displayChangedStakeTest() {
-        String label = "#stakeLabel";
+        String label = "#labelStake";
         int newStake = 42;
         verifyThat(label, hasText("not set yet"));
         interact(() -> controller.displayChangedStake(newStake));
