@@ -14,18 +14,18 @@ public class ModelImpl implements Model {
     private final List<String> players;
 
     public ModelImpl(Presenter.Model presenter) {
+        this(presenter, new RandomProviderImpl());
+    }
+
+    public ModelImpl(Presenter.Model presenter, RandomProvider randomProvider) {
         this.presenter = presenter;
-        randomProvider = new RandomProviderImpl();
+        this.randomProvider = randomProvider;
         players = new ArrayList<>();
         for (int i = 1; i <= 2; i++) {
             players.add("Player " + i);
         }
         iterator = players.iterator();
         iterator.next();
-    }
-
-    void setRandomProvider(RandomProvider randomProvider) {
-        this.randomProvider = randomProvider;
     }
 
     @Override

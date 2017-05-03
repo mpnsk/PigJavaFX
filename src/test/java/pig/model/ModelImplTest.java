@@ -43,16 +43,14 @@ public class ModelImplTest {
 
     @Test
     public void rollMockedTest() throws Exception {
-        Model model = new ModelImpl(presenter);
-        ((ModelImpl) model).setRandomProvider(randomProvider);
+        Model model = new ModelImpl(presenter, randomProvider);
         when(randomProvider.nextInt(6)).thenReturn(6);
         assertThat(model.roll(), is(6));
     }
 
     @Test
     public void rollZeroCallsChangePlayerHookTest() throws Exception {
-        Model model = new ModelImpl(presenter);
-        ((ModelImpl) model).setRandomProvider(randomProvider);
+        Model model = new ModelImpl(presenter, randomProvider);
         when(randomProvider.nextInt(6)).thenReturn(0);
         model.roll();
         verify(presenter).newTurnFor("Player 2");
@@ -60,8 +58,7 @@ public class ModelImplTest {
 
     @Test
     public void rollZeroCallsChangePlayerHookMultipleTimesTest() throws Exception {
-        Model model = new ModelImpl(presenter);
-        ((ModelImpl) model).setRandomProvider(randomProvider);
+        Model model = new ModelImpl(presenter, randomProvider);
         when(randomProvider.nextInt(6)).thenReturn(0);
         model.roll();
         verify(presenter, times(1)).newTurnFor("Player 2");
