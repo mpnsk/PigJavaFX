@@ -46,4 +46,6 @@ public class ViewImpl implements View {
     public void displayChangedStake(int newStake) {
         labelStake.setText(Integer.toString(newStake));
     }
+
+    //TODO display changed score
 }
