@@ -1,4 +1,4 @@
-package pig.model;
+package pig;
 
 import org.junit.After;
 import org.junit.Before;
@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import pig.presenter.Presenter;
+import pig.logic.RandomProvider;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -16,10 +16,10 @@ import static org.mockito.Mockito.when;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class ModelImplTest {
+public class ModelTest {
     @Mock
     private
-    Presenter.Model presenter;
+    PigMvp.Presenter.forModel presenter;
     @Mock
     private
     RandomProvider randomProvider;
@@ -34,7 +34,7 @@ public class ModelImplTest {
 
     @Test
     public void rollRandomRangeTest() throws Exception {
-        Model model = new ModelImpl(presenter);
+        PigMvp.Model model = new Model(presenter);
         for (int i = 0; i < 500; i++) {
             assertThat(model.roll(), is(greaterThanOrEqualTo(0)));
             assertThat(model.roll(), is(lessThan(7)));
@@ -43,31 +43,31 @@ public class ModelImplTest {
 
     @Test
     public void rollMockedTest() throws Exception {
-        Model model = new ModelImpl(presenter, randomProvider);
+        PigMvp.Model model = new Model(presenter, randomProvider);
         when(randomProvider.nextInt(6)).thenReturn(6);
         assertThat(model.roll(), is(6));
     }
 
     @Test
     public void rollZeroCallsChangePlayerHookTest() throws Exception {
-        Model model = new ModelImpl(presenter, randomProvider);
+        PigMvp.Model model = new Model(presenter, randomProvider);
         when(randomProvider.nextInt(6)).thenReturn(0);
         model.roll();
-        verify(presenter).newTurnFor("Player 2");
+        verify(presenter).modelSaysNewTurnFor("Player 2");
     }
 
     @Test
     public void rollZeroCallsChangePlayerHookMultipleTimesTest() throws Exception {
-        Model model = new ModelImpl(presenter, randomProvider);
+        PigMvp.Model model = new Model(presenter, randomProvider);
         when(randomProvider.nextInt(6)).thenReturn(0);
         model.roll();
-        verify(presenter, times(1)).newTurnFor("Player 2");
+        verify(presenter, times(1)).modelSaysNewTurnFor("Player 2");
         model.roll();
-        verify(presenter, times(1)).newTurnFor("Player 1");
+        verify(presenter, times(1)).modelSaysNewTurnFor("Player 1");
         model.roll();
-        verify(presenter, times(2)).newTurnFor("Player 2");
+        verify(presenter, times(2)).modelSaysNewTurnFor("Player 2");
         model.roll();
-        verify(presenter, times(2)).newTurnFor("Player 1");
+        verify(presenter, times(2)).modelSaysNewTurnFor("Player 1");
     }
 
     @Test

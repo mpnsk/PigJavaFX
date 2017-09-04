@@ -7,9 +7,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.testfx.framework.junit.ApplicationTest;
-import pig.presenter.PresenterImpl;
-import pig.view.View;
-import pig.view.ViewImpl;
+import pig.PigMvp;
+import pig.Presenter;
+import pig.View;
 
 
 import static org.testfx.api.FxAssert.verifyThat;
@@ -21,15 +21,17 @@ import static org.testfx.matcher.base.NodeMatchers.hasText;
 @RunWith(MockitoJUnitRunner.class)
 public class MainTest extends ApplicationTest {
     @Mock
-    private PresenterImpl mockPresenter;
-    private View controller;
+    private Presenter mockPresenter;
+    private PigMvp.View controller;
+
+
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
-        controller = new ViewImpl(mockPresenter);
-        fxmlLoader.setController(controller);
         Parent root = fxmlLoader.load();
+        controller = fxmlLoader.getController();
+        ((View) controller).injectPresenter(mockPresenter);
 
         stage.setScene(new Scene(root, 300, 275));
         stage.setTitle("Hello World Test");

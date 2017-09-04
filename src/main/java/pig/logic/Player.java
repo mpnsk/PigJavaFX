@@ -1,10 +1,10 @@
-package pig.model;
+package pig.logic;
 
-class Player {
+public class Player {
     private final String name;
     private int score;
 
-    Player(String name) {
+    public Player(String name) {
         this.name = name;
         this.score = 0;
     }

@@ -1,35 +1,36 @@
-package pig.view;
+package pig;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.event.ActionEvent;
-import pig.presenter.Presenter;
-import pig.presenter.PresenterImpl;
 
 
-public class ViewImpl implements View {
+public class View implements PigMvp.View {
     @FXML
     private Label labelStake, labelWhoseTurn, labelRoll, labelPlayer1, labelPlayer2, labelPlayer1Score, labelPlayer2Score;
-    private final Presenter.View presenter;
+    private PigMvp.Presenter.forView presenter;
 
-    public ViewImpl() {
-        presenter = new PresenterImpl(this);
+    public View() {
+        presenter = new Presenter(this);
     }
 
-    public ViewImpl(Presenter.View presenter) {
+    public void injectPresenter(PigMvp.Presenter.forView presenter){
+        this.presenter = presenter;
+    }
+
+    public View(PigMvp.Presenter.forView presenter) {
         this.presenter = presenter;
     }
 
     @FXML
     public void roll(ActionEvent event) {
-        presenter.playerRolls();
+        presenter.viewSaysRoll();
     }
 
     @FXML
     public void hold(ActionEvent event) {
-        presenter.playerHolds();
+        presenter.viewSaysHold();
     }
 
     @Override

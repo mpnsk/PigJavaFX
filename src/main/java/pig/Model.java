@@ -1,25 +1,26 @@
-package pig.model;
+package pig;
 
-import pig.presenter.Presenter;
+import pig.logic.Player;
+import pig.logic.RandomProvider;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ModelImpl implements Model {
+public class Model implements PigMvp.Model {
 
-    private final Presenter.Model presenter;
+    private final PigMvp.Presenter.forModel presenter;
     private Iterator<Player> iterator;
     private RandomProvider randomProvider;
     private final List<Player> players;
     private Player curentPlayer;
     private int stake;
 
-    public ModelImpl(Presenter.Model presenter) {
-        this(presenter, new RandomProviderImpl());
+    Model(PigMvp.Presenter.forModel presenter) {
+        this(presenter, new RandomProvider.InjectableRandomProvider());
     }
 
-    public ModelImpl(Presenter.Model presenter, RandomProvider randomProvider) {
+    Model(PigMvp.Presenter.forModel presenter, RandomProvider randomProvider) {
         this.presenter = presenter;
         this.randomProvider = randomProvider;
         players = new ArrayList<>();
@@ -55,6 +56,6 @@ public class ModelImpl implements Model {
             iterator = players.iterator();
         }
         curentPlayer = iterator.next();
-        presenter.newTurnFor(curentPlayer.getName());
+        presenter.modelSaysNewTurnFor(curentPlayer.getName());
     }
 }
